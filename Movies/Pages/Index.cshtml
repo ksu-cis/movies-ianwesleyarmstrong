@@ -1,7 +1,67 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Home Page";
 }
 
-<h1>Hello World</h1>
+<h1> Movies</h1>
+
+
+    
+
+
+<div id="container">
+    <div id="resuls">
+        @foreach (Movie m in Model.Movies)
+        {
+            <div class="movie-entry">
+                <h4>@m.Title</h4>
+                <ul>
+                    <li>Genre: @m.Major_Genre</li>
+                    <li>MPAA Rating: @m.MPAA_Rating</li>
+                    @if (m.Rotten_Tomatoes_Rating != null)
+                    {
+                        <li>Rotten Tomatoes: @m.Rotten_Tomatoes_Rating.</li>
+                    }
+                    @if (m.IMDB_Rating != null)
+                    {
+                        <li> IMDB Rating: @m.IMDB_Rating</li>
+                    }
+
+                </ul>
+            </div>
+
+        }
+    </div>
+    <div id="filter">
+        <form method="post">
+            <input type="text" name="search" id="search" />
+            <input type="submit" value="search" />
+
+            <h2> MPAA Rating</h2>
+            <label>
+                <input type="checkbox" name="ratings" value="G" />
+                Rated G
+            </label>
+            <label>
+                <input type="checkbox" name="ratings" value="PG" />
+                Rated PG
+            </label>
+            <label>
+                <input type="checkbox" name="ratings" value="PG-13" />
+                Rated PG-13
+            </label>
+            <label>
+                <input type="checkbox" name="ratings" value="R" />
+                Rated R
+            </label>
+            <label>
+                <input type="checkbox" name="ratings" value="NC-17" />
+                Rated NC-17
+            </label>
+
+        </form>
+    </div>
+    
+</div>
+
